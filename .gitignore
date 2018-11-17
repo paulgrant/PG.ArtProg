@@ -1,0 +1,10 @@
+ClassLibrary/bin/
+ClassLibrary/obj/
+ConsoleApp1/.vs/ConsoleApp1/v15/.suo
+ConsoleApp1/.vs/ConsoleApp1/v15/Server/sqlite3/db.lock
+ConsoleApp1/.vs/
+ConsoleApp1/ConsoleApp1/bin/
+ConsoleApp1/ConsoleApp1/obj/
+UnitTestProject1/bin/Debug/netcoreapp2.1/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+UnitTestProject1/bin/
+UnitTestProject1/obj/
