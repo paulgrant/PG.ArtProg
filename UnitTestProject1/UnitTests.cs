@@ -66,6 +66,34 @@ namespace PG.AP.Test
             Assert.IsTrue(returnIntArray[2] == 23);
         }
 
+        [TestMethod]
+        public void TestWithTwoSequentiallyMissingInArray()
+        {
+            var returnIntArray = artProg.findTheMissing(new int[] { 1, 2, 5, 6, 7 });
+            Assert.IsNotNull(returnIntArray);
+            Assert.IsTrue(returnIntArray.Length.Equals(2), "Length is not as expected:2, actual:" + returnIntArray.Length);
+            Assert.IsTrue(returnIntArray[0] == 3);
+            Assert.IsTrue(returnIntArray[1] == 4);
+        }
+
+        [TestMethod]
+        public void TestWithOneMissingInArrayReversed()
+        {
+            var returnIntArray = artProg.findTheMissing(new int[] { 9, 6, 3, 0, -6, -9, -12 });
+            Assert.IsNotNull(returnIntArray);
+            Assert.IsTrue(returnIntArray.Length.Equals(1), "Length is not as expected:1, actual:" + returnIntArray.Length);
+            Assert.IsTrue(returnIntArray[0] == -3);
+        }
+
+        [TestMethod]
+        public void TestWithOneMissingInArrayStartingNegative()
+        {
+            var returnIntArray = artProg.findTheMissing(new int[] { -9, -6, -3, 0, 6, 9, 12 });
+            Assert.IsNotNull(returnIntArray);
+            Assert.IsTrue(returnIntArray.Length.Equals(1), "Length is not as expected:1, actual:" + returnIntArray.Length);
+            Assert.IsTrue(returnIntArray[0] == 3);
+        }
+
         [TestCleanup]
         public void TearDown()
         {

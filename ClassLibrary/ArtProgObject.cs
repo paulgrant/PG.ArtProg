@@ -20,7 +20,7 @@ namespace PG.AP.Library
 
             var parsedList = parseList(values);
 
-            var missingList = findMissingList(parsedList);
+            var missingList = findMissingList(parsedList, values);
             return missingList;
         }
 
@@ -56,24 +56,39 @@ namespace PG.AP.Library
             return returnList;
         }
 
-        private int[] findMissingList(Dictionary<int, List<int>> parsedList)
+        private int[] findMissingList(Dictionary<int, List<int>> parsedList, int[] originalList)
         {
             if (parsedList.Count == 1)
             {
                 return null;
             }
 
-            //find the list with the smallest number of items.
-            var missingKVP = parsedList.OrderBy(x => x.Value.Count).First();
-            var normalKVP = parsedList.OrderByDescending(x => x.Value.Count).First();
+            //Tn = a + (n - 1) d
+            var commonDifference = parsedList.OrderByDescending(x => x.Value.Count).First().Key;
+            var nthValue = originalList[0];
+            var endValue = originalList[originalList.Length-1];
+            var index = 1;
+            var missingList =  new List<int>();
+            var ascendingList = nthValue < endValue;
 
-            if (missingKVP.Value == null || missingKVP.Value.Count==0) return null;
-            for(var i = 0; i < missingKVP.Value.Count(); i++)
+            while (ascendingList ? nthValue < endValue : nthValue > endValue)
             {
-                missingKVP.Value[i] = missingKVP.Value[i] - normalKVP.Key;
+                nthValue = nthValue + commonDifference;
+                if (nthValue == originalList[index])
+                {
+                    index++;
+                }
+                else
+                {
+                    missingList.Add(nthValue);
+                }
             }
-        
-            return missingKVP.Value.ToArray();
+            return missingList.ToArray();
+        }
+
+        private object List<T>()
+        {
+            throw new NotImplementedException();
         }
     }
 }
